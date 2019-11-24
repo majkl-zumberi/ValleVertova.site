@@ -1,0 +1,1058 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>Val Vertova</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/izi-login.css">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+   <!-- <link rel="stylesheet" href="assets/css/main.css" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="./UI-Rating-master/rating.css">
+    <script src="./UI-Rating-master/rating.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bell.css">
+    <!-- <link rel="stylesheet" href="assets/css/animate.css"> -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    
+</head>
+
+<body>
+    <!-- Firebase.js -->
+    <script src="https://gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-auth.js"></script>
+    
+    <!-- Header -->
+    <header id="header" class="alt">
+        <div class="logo"><a href="index.html">Val Vertova</a></div>
+        
+        <div id="ex4">
+                <span id="badge__news" class=" fa-stack fa-2x has-badge" data-count="">
+                        <a id="badge" href="#menu"> <i class="p3 fas fa-bars  fa-xs fa-stack-1x xfa-inverse" data-count="4b"></i></a>
+                </span>
+              </div>
+        
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        <ul id="ul_admin" class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#dl">Descrizione</a></li>
+            <li><a href="#szz">Sensibilizzazione</a></li>
+            <li><a href="#sn">Navetta</a></li>
+            <li><a href="#pei">Percorsi</a></li>
+            <!-- <button id="modal_login_btn"  class="trigger-custom" data-izimodal-open="#modal-custom">Login/Custom example</button> -->
+            <li id="liAuth_modal" data-izimodal-open="#modal-custom"><a >Accedi</a></li>
+            <!-- <a id="liAuth_modal"> Accedi1</a> -->
+            <li id="liAuth" style="display:none"><a id="auth">Accedi</a></li>
+            <li id="out" style="display: none"><a id="signOut">Log out</a></li>
+            <li href="#" uk-toggle="target: #modal-news"> <a>News<span  id="badge-news"class="uk-badge"></span></a></li>
+            <li id="recens" style="display:none"><a id="open_r"  href="#modal-container" uk-toggle>recensioni</a></li>
+
+<div id="modal-container" class="uk-modal-container" uk-modal uk-overflow-auto>
+    <div class="uk-modal-dialog uk-modal-body">
+        <button id="close_recens" class="uk-modal-close-default" type="button" uk-close></button>
+        <table class="uk-table uk-table-justify uk-table-divider">
+            <thead>
+                <tr>
+                    <th class="uk-width-small">Utente</th>
+                    <th>Commento</th>
+                    <th class="uk-width-small">Giudizio</th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+            <tbody id="tBody_adm_feed">
+                <!-- <tr>
+                    <td>Table Data</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>5</td>
+                    <td><button class="uk-button uk-button-default" type="button">Button</button></td>
+                </tr>
+                <tr>
+                    <td>Table Data</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>5</td>
+                    <td><button class="uk-button uk-button-default uk-button-small" type="button"><i class="fas fa-trash-alt"></i></button></td>
+                </tr> -->
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+
+
+<li id="news_ad" style="display:none"><a id="open_n"  href="#modal-container_news" uk-toggle>news admin</a></li>
+
+<div id="modal-container_news" class="uk-modal-container" uk-modal uk-overflow-auto>
+    <div class="uk-modal-dialog uk-modal-body">
+        <button id="close_news_ad" class="uk-modal-close-default" type="button" uk-close></button>
+        <table class="uk-table uk-table-justify uk-table-divider">
+            <thead>
+                <tr>
+                    <th class="uk-width-small">data</th>
+                    <th>avviso</th>
+                    <th><button class="uk-button uk-button-default uk-button-small" type="button" uk-toggle="target: #modal_form_ad">nuovo avviso</button></th>
+                    
+                </tr>
+            </thead>
+            <tbody id="tBody_adm_news">
+                <!-- <tr>
+                    <td>Table Data</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>5</td>
+                    <td><button class="uk-button uk-button-default" type="button">Button</button></td>
+                </tr>
+                <tr>
+                    <td>Table Data</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>5</td>
+                    <td><button class="uk-button uk-button-default uk-button-small" type="button"><i class="fas fa-trash-alt"></i></button></td>
+                </tr> -->
+            </tbody>
+        </table>
+        
+        
+    </div>
+</div>
+
+
+            <div id="modal-news" class="uk-flex-top" uk-modal>
+                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+                        <!-- <button class="uk-modal-close-default" type="button" uk-close></button>-->
+                        <div class="uk-modal-header">
+                            <div class="uk-flex uk-flex-left">
+
+                                <h2 class="uk-modal-title">Avvisi importanti</h2>
+                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                            </div>
+
+                        </div>
+
+                        <div class="uk-modal-body" uk-overflow-auto>
+                                
+                                                    
+                                                          <ul uk-accordion id="ul_news_container">
+                                                            <!-- <li >
+                                                                <a class="uk-accordion-title" >29 Marzo 18:56</a>
+                                                                <div class="uk-accordion-content">
+                                                                    <article class="message is-info">
+                                                                        <div class="message-body">
+                                                                       domani le strade sono chiuse perchè di si
+                                                                        </div>
+                                                                      </article>  </div>
+                                                            </li>
+                                                            <li>
+                                                                <a class="uk-accordion-title" href="#">Item 2</a>
+                                                                <div class="uk-accordion-content" style="border-color: red;background-color: rgb(216, 81, 81)">
+                                                                    <article class="message is-warning">
+                                                                        <div class="message-body">
+                                                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+                                                                        </div>
+                                                                      </article>  </div>
+                                                            </li>
+                                                            <li>
+                                                                <a class="uk-accordion-title" href="#">Item 3</a>
+                                                                <div class="uk-accordion-content">
+                                                                    <article class="message is-danger">
+                                                                        <div class="message-body">
+                                                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+                                                                        </div>
+                                                                      </article>  </div>
+                                                            </li> -->
+                                                        </ul>
+                                                    </div>
+                        <div class="uk-modal-footer uk-text-right ">
+
+                            <div class="uk-flex uk-flex-right">
+
+                                    <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+       
+       
+       
+       
+       
+        </ul>
+        
+    </nav>
+
+    <!-- Banner -->
+    <section class="banner full">
+        <article>
+            <img src="images/sl1.jpg" alt="" />
+        </article>
+        <article>
+            <img src="images/sl2.jpg" alt="" />
+        </article>
+        <article>
+            <img src="images/sl3.jpg" alt="" />
+        </article>
+        <article>
+            <img src="images/sl4.jpg" alt="" />
+        </article>
+      
+    </section>
+    <div id="modal_form_ad" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">Nuovo avviso</h2>
+            <div class="uk-margin">
+                <select class="uk-select" id="select_form_ad">
+                    <option value="info">Informativo</option>
+                    <option value="warning">Avvertimento</option>
+                    <option value="danger">Pericolo</option>
+                </select>
+            </div>
+    
+            <div class="uk-margin">
+                <textarea id="txa_form_ad"class="uk-textarea" rows="5" placeholder="Avviso"></textarea>
+            </div> <p class="uk-text-right">
+                <button  id="close_form_ad" class="uk-button uk-button-default uk-modal-close" type="button">Annulla</button>
+                <button  id="btn_form_ad" style="color:white" class="uk-button uk-button-primary"  >Salva</button>
+            </p>
+        </div>
+    </div>
+    <div class="uk-alert-danger" uk-alert >
+            
+          <p style="display:inline-flex">  <b style="color:red">Attenzione <i class="fas fa-exclamation-triangle"></i></b>Per importanti avvisi Si prega di visionare la sezione <b><a href="#modal-news" uk-toggle>News</a> </b>
+          </p></div>
+    <!-- One -->
+    <section id="one" class="wrapper style2">
+        <div class="inner">
+            <div class="grid-style">
+
+                <div>
+                    <div class="box">
+                        <div class="image fit">
+                            <img src="images/principale.jpg" alt="" />
+                        </div>
+                        <div id="dl"></div>
+                        <div class="content">
+                            <header class="align-center">
+                                <p>Valle Vertova</p>
+                                <h2>Descrizione Luogo</h2>
+                            </header>
+                            <p id="modal-text"> La Val Vertova è uno degli angoli più suggestivi della media ValSeriana. Un percorso a contatto con la natura osservando favolosi salti d’acqua cristallina, le marmitte dei giganti (modellate nei secoli dalla forza delle acque)
+                                e la ricca vegetazione che caratterizza questa valle.</p>
+                            <footer class="align-center">
+                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Scopri di più</button>-->
+                                <p uk-margin>
+                                    <a class="uk-button uk-button-default" href="#modal-group-1" uk-toggle>Scopri di più</a>
+                                    <button id="modal_login_btn"  class="trigger-custom" data-izimodal-open="#modal-custom" style="display: none">Login/Custom example</button>
+
+                                    <div id="modal-custom" data-iziModal-group="grupo1" style="background-color: white">
+                                        <div  id="modal_login" style="display:none">
+                                            <button id="closeLogModal" data-iziModal-close class="icon-close">x</button>
+                                            <header >
+                                                <a href="" id="signin">Accedi</a>
+                                                
+                                            </header>
+                                            <section class="active" style="background-color: white">
+                                                <input id="email-izi" style="background-color: white" type="email" placeholder="Email">
+                                                <input id="passw-izi" style="background-color: white"type="password" placeholder="Password">
+                                                <li class="uk-nav-divider"></li>
+                                                
+                                                <div id="googleSignInBtn" class='g-sign-in-button ' style="margin: auto;width: 100%;">
+                                                    <div  class=content-wrapper>
+                                                    <div class='logo-wrapper'>  
+                                                      <img src='https://developers.google.com/identity/images/g-logo.png'>
+                                                      </div>  
+                                                      <span class='text-container'> 
+                                                        <span>Accedi con Google</span>
+                                                      </span>
+                                                    </div>  
+                                                  </div>
+                                                  
+                                                  
+                                                <footer style="background-color: white">
+                                                    <button data-iziModal-close>Cancella</button>
+                                                    <button class="submit">Log in</button>            
+                                                </footer>
+                                            </section>
+                                        </div>
+                                        </div>
+                                    <!-- <button id="nyas_data">clicca</button> -->
+                                    <!-- <a class="uk-button uk-button-default" href="#modal-group-2" uk-toggle>Modal 2</a>
+                                    <a class="uk-button uk-button-default" href="#modal-group-3" uk-toggle>Modal 3</a>-->
+                                    
+  
+  
+  
+  <div id="modal-youtube" class="modais"  data-izimodal-transitionin="fadeInDown" data-izimodal-title="Youtube" data-izimodal-iframeURL="https://www.youtube.com/embed/3ss6DtioJ2E?autoplay=1"></div>
+    
+                                </p>
+
+                                <div id="modal-group-1" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+                                        <!-- <button class="uk-modal-close-default" type="button" uk-close></button> -->
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+
+                                                <h2 class="uk-modal-title">Geologia</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                            </div>
+
+                                        </div>
+                                        <div class="uk-modal-body ">
+                                            <p>La valle è composta principalmente da dolomia. L'azione erosiva dell'acqua su questo tipo di roccia molto dura, ha permesso la formazione di gole, cascate e pozze d'acqua dai colori intensi, accompagnate da
+                                                fenomeni di carsismo, specialmente nella parte più a monte del torrente.</p>
+                                        </div>
+                                        <div class="uk-modal-footer uk-text-right uk-flex uk-flex-right">
+                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
+                                            <a href="#modal-group-2" class="uk-button uk-button-primary" uk-toggle>Avanti</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="modal-group-2" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+                                        <!-- <button class="uk-modal-close-default" type="button" uk-close></button>-->
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+
+                                                <h2 class="uk-modal-title">Clima e Vegetazione</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="uk-modal-body" uk-overflow-auto>
+                                            <p id="modal-text">Nelle quote inferiori ai 1000/1200m si trovano boschi a dominanza di carpino nero, sui versanti ad esposizione meridionale, e da boschi misti di acero e frassino maggiore con presenza di faggio, su quelli ad
+                                                esposizione settentrionale, mentre alle quote superiori dominano le faggete.</p>
+
+                                            <h5 id="h5_modal"><b>Boschi di carpino nero</b></h5>
+
+                                            <p id="modal-text">Si tratta di una boscaglia discontinua che si alterna a superfici aperte a prateria. Nelle formazioni boscate chiuse trovano rifugio le caratteristiche piante del sottobosco (primula, dente di cane, viola della
+                                                fegatella…)
+                                            </p>
+                                            <h5 id="h5_modal"><b>Boschi di frassino ed acero</b></h5>
+
+                                            <p id="modal-text">Si trovano boschi misti costituiti da frassino maggiore e acero di monte, a volte accompagnati dal faggio. L’abbondanza di acqua e humus nel suolo favoriscono la crescita di un lussureggiante sottobosco.</p>
+
+                                            <h5 id="h5_modal"><b>Boschi di faggio</b></h5>
+
+                                            <p id="modal-text">Sopra i 1000/1200m dominano i boschi di faggio, assolvono funzioni produttive, ricreative e paesaggistiche.
+                                            </p>
+                                        </div>
+                                        <div class="uk-modal-footer uk-text-right ">
+
+                                            <div class="uk-flex uk-flex-right">
+
+                                                <button id="trigger-modal" href="#modal-group-1" class="uk-button uk-button-primary" uk-toggle>Indietro</button>
+                                                <button id="trigger-modal" href="#modal-group-3" class="uk-button uk-button-primary" type="button" uk-toggle>Avanti</button>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="modal-group-3" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+                                        <!--  <button class="uk-modal-close-default" type="button" uk-close></button>-->
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+
+                                                <h2 class="uk-modal-title">Fauna</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                            </div>
+
+                                        </div>
+                                        <div class="uk-modal-body" uk-overflow-auto>
+
+                                            <h5 id="h5_modal"><b>Nel fiume</b></h5>
+
+                                            <p id="modal-text">Oltre ai soliti molluschi anellidi, crostacei e insetti, sotto le rocce del fiume si possono nascondere gli efemerotteri, i tricotteri e i ditteri. Di queste famiglie ne fanno parte le plenarie, utilizzati come
+                                                indicatori biologici, si tratta di minuscoli vermi piatti, vivono attaccate alle pietre del torrente. Come vertebrati si possono trovare il merlo acquaiolo, un uccello in grado di nuotare, il toporagno,
+                                                dotato di saliva velenosa in grado di paralizzare prede più grandi. Ai lati del torrente si trovano i coleotteri, emitteri acquatici e piccoli crostacei, inoltre è il luogo dove si trovano numerose ovature
+                                                di anfibi (es. rana rossa, salamandra pezzata e tritone crestato).</p>
+
+                                            <h5 id="h5_modal"><b>Nel bosco</b></h5>
+
+                                            <p id="modal-text">Qui si trova una numerosa quantità di insetti quali, balanini, piccoli coleotteri, emitteri, cimici e afidi, epidotteri, bruchi, nei buchi de tronchi si nidifica il picchio muratore. Gli animali più comuni sono
+                                                topolini selvatici, ghiri, che costituiscono la base alimentare per i carnivori presenti nel bosco come la donnola la faina e la volpe. In Valle Vertova si trovano anche delle specie di serpenti quali, la
+                                                vipera, il biacco e il colubro di esculapio.
+                                            </p>
+
+                                        </div>
+                                        <div class="uk-modal-footer uk-text-right">
+                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
+                                            <button id="trigger-modal" href="#modal-group-2" class="uk-button uk-button-primary" uk-toggle>Indietro</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="box">
+                        <div class="image fit">
+                            <img src="images/divieto.jpg" alt="" />
+                        </div>
+                        <div id="szz"></div>
+                        <div class="content">
+                            <header class="align-center">
+                                <p>Val Vertova</p>
+                                <h2>Sensibilizzazione</h2>
+                            </header>
+                            <p id="modal-text"> Un luogo dove poter stare a stretto contatto con la natura, non un posto dove campeggiare o fare barbecue, e dove si devono rispettare determinate regole per preservare la magnificenza di questo posto.</p>
+                            <footer class="align-center">
+                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg1">Scopri di più</button>-->
+                                <p uk-margin>
+                                    <a class="uk-button uk-button-default" href="#modal-group-4" uk-toggle>Scopri di più</a>
+                                    <!--<a class="uk-button uk-button-default" href="#modal-group-5" uk-toggle>Modal 2</a>-->
+                                </p>
+
+                                <div id="modal-group-4" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+
+                                                <h2 class="uk-modal-title">Sensibilizzazione</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                            </div>
+
+                                        </div>
+                                        <div class="uk-modal-body" uk-overflow-auto>
+                                            <h3>Sono vietati:</h3>
+                                            <ul class="uk-list uk-list-striped">
+                                                <li>Utensili che possano danneggiare la natura(Es. Ombrelloni)</li>
+                                                <li>Accendere fuochi</li>
+                                                <li>Lasciare spazzatura e diezioni dei cani per terra ma sono da gettare negli appositi cestini</li>
+                                                <li>Danneggiare la natura( rompere alberi, strappare fiori o erba…)</li>
+                                                <li>Lasciare incustodite le macchine ove non possibile</li>
+                                                <li>Gettare mozziconi</li>
+                                                <li>Accendere fuochi</li>
+
+                                            </ul>
+
+
+                                        </div>
+
+                                        <div class="uk-modal-footer uk-text-right uk-flex uk-flex-right">
+                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
+                                            <a href="#modal-group-5" class="uk-button uk-button-primary" uk-toggle>Avanti</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="modal-group-5" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+
+                                                <h2 class="uk-modal-title">Sensibilizzazione</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                            </div>
+
+                                        </div>
+                                        <div class="uk-modal-body">
+                                            <h3>È invece consigliabile:</h3>
+                                            <ul class="uk-list uk-list-striped">
+                                                <li>Non portare passeggini vista la camminata non impegnativa ma con presenza di rocce e pendenze</li>
+                                                <li>Mettere scarpe comode da montagna</li>
+                                                <li>Godersi la natura</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="uk-modal-footer uk-text-right uk-flex uk-flex-right">
+                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
+                                            <a href="#modal-group-4" class="uk-button uk-button-primary" uk-toggle>Indietro</a>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="inner">
+            <div class="grid-style">
+
+                <div>
+                    <div class="box">
+                        <div class="image fit" >
+                            <img src="images/sentiero.jpg" alt="" />
+                        </div>
+                        <div id="pei"></div>
+                        <div   class="content">
+                            <header class="align-center">
+                                <p >Valle Vertova</p>
+                                <h2 class="rubeberBand">Percorsi e Indicazioni</h2>
+                            </header>
+                            <p id="modal-text"> Raggiungiamo in macchina il centro di Vertova: da piazza Vittorio Veneto prendiamo la strada della ValVertova (sulla sinistra), che si snoda lungo il torrente per km 2,7 fino alla località Cà Rosèt. La strada diventa ora sterrata
+                                e, superato il punto ristoro del GAV Vertova, dopo un centinaio di metri vi è possibilità di parcheggio.</p>
+                            <footer class="align-center">
+                             <a  id="open__sentieri" class="uk-button uk-button-default" href="#modal-group-7" uk-toggle>Scopri di più</a>
+                             <a class="uk-button uk-button-default" href="http://geoportale.caibergamo.it/caibergamo_gfmaplet/?highlightFeatures=sentieri|3|numeroCAI=%27527%27" target="_blank" ><i class="fas fa-map-marked"></i> Visualizza Mappa</a> 
+                                <p uk-margin>
+   
+</p>
+
+<div id="modal-group-10" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+                                        <!-- <button class="uk-modal-close-default" type="button" uk-close></button> -->
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+
+                                                <h2 class="uk-modal-title">Sentiero 527: Bivacco Testa</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                            </div>
+
+                                        </div>
+                                        <div class="uk-modal-body " uk-overflow-auto>
+                                            <p>Dalla sede della GAV si prende la mulattiera che costeggia il fiume fino alla cascata della Val del GRU. Si continua fino a che, attraversato un ponticello, si raggiungono i prati del Merèl. Qui il sentiero lascia il torrente innalzandosi a sinistra. Si passa vicini alla baita di prato “Morto basso” e solo poco prima di aver raggiunto la deviazione per prato “Morto alto”, il sentiero si discosta dal torrente. Superata con ripide serpentine una balza, si riguadagna il torrente e si sbuca nella conca di Sedernèl. Si prosegue lungo i ghiaioni fino alla baita Rondi dove, piegando verso destra, ci si alza fino ad un fitto bosco. Si lascia il sentiero per le baite e, dopo una decisa salita sulla sinistra verso il colle di Pradaccio, si arriva al bivacco Testa.
+
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="uk-modal-footer uk-text-right ">
+
+                                            <div class="uk-flex uk-flex-right">
+
+                                                <button id="trigger-modal" href="#modal-group-9" class="uk-button uk-button-primary" uk-toggle>Indietro</button>
+                                                <button id="trigger-modal" href="#" data-izimodal-open="#modal-youtube" class="uk-button-small uk-button-primary uk-modal-close" type="button" >Avanti</button>
+                                                <button class="uk-button uk-button-small "  style="margin-top: 3px"  type="button"><i class="fas fa-angle-down"></i></button>
+                                                 <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+                                                    <ul class="uk-nav uk-dropdown-nav">
+                                                        
+                                                            <li class="uk-nav-header">Sentieri</li>
+                                                            <li class="uk-active"><a href="#">527</a></li>
+                                                            <li><a uk-toggle="target: #modal-group-8" >525A</a></li>
+                                                            <li><a uk-toggle="target: #modal-group-7">529A</a></li>
+                                                            <li><a uk-toggle="target: #modal-group-9">516</a></li>
+                                                            <li class="uk-nav-divider"></li>
+                                                            <li><a data-izimodal-open="#modal-youtube" class="uk-modal-close" style="background-color: rgb(255,255,255,0);text-decoration: none">Video Valle</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="modal-group-7" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+                                        <!-- <button class="uk-modal-close-default" type="button" uk-close></button> -->
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+                                                
+                                                <h2 id="animateElement"  class="uk-modal-title ">Sentiero 529A: Passo di Bliben</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                                            
+                                            </div>
+
+                                        </div>
+                                        <div class="uk-modal-body" uk-overflow-auto>
+                                            <p>Dalla stradina che costeggia la val Vertova, dopo la sorgente denominata Gaernài, si stacca una gradinata che è l’inizio del sentiero 529A, recentemente riaperto. Il percorso passa per la località Melgèer e raggiunge il passo di Bliben congiungendosi con il sentiero 529. Il sentiero è in parte su resti di mulattiera e parte sterrato, ma sempre ben curato e di buona percorribilità.
+                                            </p>
+                                        </div>
+                                        <div class="uk-modal-footer uk-text-right uk-flex uk-flex-right">
+                                            
+                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
+                                            <a href="#modal-group-8" class="uk-button uk-button-primary" uk-toggle>Avanti</a>
+                                            <button class="uk-button  uk-button-small" type="button"><i class="fas fa-angle-down"></i></button>
+                                            <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+                                                    <ul class="uk-nav uk-dropdown-nav">
+                                                        
+                                                            <li class="uk-nav-header">Sentieri</li>
+                                                            <li class="uk-active"><a href="#">529A</a></li>
+                                                            <li><a uk-toggle="target: #modal-group-8">525A</a></li>
+                                                            <li><a uk-toggle="target: #modal-group-9">516</a></li>
+                                                            <li><a uk-toggle="target: #modal-group-10">527</a></li>
+                                                            <li class="uk-nav-divider"></li>
+                                                            <li><a data-izimodal-open="#modal-youtube" class="uk-modal-close" style="background-color: rgb(255,255,255,0);text-decoration: none">Video Valle</a></li>
+                                                    </ul>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="modal-group-8" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+                                        <!-- <button class="uk-modal-close-default" type="button" uk-close></button> -->
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+
+                                                <h2 class="uk-modal-title">Sentiero 525A: Colle di Barbata</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                            </div>
+
+                                        </div>
+                                        <div class="uk-modal-body " uk-overflow-auto>
+                                            <p>Collegamento che permettere di accorciare il percorso per il M. Alben o per il passo di Barbata. Terminata la carrareccia della val Vertova, all’altezza delle ultime captazioni di sorgenti, sulla sinistra si dirama il sentiero 527 che raggiunge il bivacco Testa. Circa 100 metri oltre, sulla sinistra, inizia il sentiero della "Borleda", come è comunemente denominato questo percorso. Si procede con alcuni tornanti nel bosco per giungere alla baita Borleda bassa. Si prosegue sempre nel bosco, prima relativamente ripido e poi con tranquilli traversi. Si incontrano: dapprima la baita Borleda alta e, successivamente, l’ormai distrutta baita della Cagna e la baita della foppa Cagna. Da qui la pendenza del sentiero aumenta decisamente, mantenendosi nel bosco fino al tratto finale che si svolge in spazi più aperti. Si congiunge al sentiero 525 poco prima del passo di Barbata.
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="uk-modal-footer uk-text-right ">
+
+                                            <div class="uk-flex uk-flex-right">
+
+                                                <button id="trigger-modal" href="#modal-group-7" class="uk-button uk-button-primary" uk-toggle>Indietro</button>
+                                                <button id="trigger-modal" href="#modal-group-9" class="uk-button-small uk-button-primary" type="button" uk-toggle>Avanti</button>
+                                                    <button class="uk-button uk-button-small "  style="margin-top: 3px" type="button"><i class="fas fa-angle-down"></i></button>
+                                            <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+                                                    <ul class="uk-nav uk-dropdown-nav">
+                                                        
+                                                        
+                                                        <li class="uk-nav-header">Sentieri</li>
+                                                        <li class="uk-active"><a href="#">525A</a></li>
+                                                        <li><a uk-toggle="target: #modal-group-7">529A</a></li>
+                                                        <li><a uk-toggle="target: #modal-group-9">516</a></li>
+                                                        <li><a uk-toggle="target: #modal-group-10">527</a></li>
+                                                        <li class="uk-nav-divider"></li>
+                                                        <li><a data-izimodal-open="#modal-youtube" class="uk-modal-close" class="uk-modal-close" style="background-color: rgb(255,255,255,0);text-decoration: none">Video Valle</a></li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                    <div id="modal-group-feed-1" class="uk-flex-top" uk-modal>
+                                            <div class="uk-modal-dialog">
+                                                
+                                                
+                                                <div class="uk-modal-header">
+                                                    <div class="uk-flex uk-flex-left">
+        
+                                                        <h2 class="uk-modal-title">Recensione più critica</h2>
+                                                        <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                                    </div>
+        
+                                                </div>
+                                                <div class="uk-modal-body">
+                                                        <div class="uk-card uk-card-default uk-width-1-*" id="collection-item">
+                                                                <div class="uk-card-header">
+                                                                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                                                        <div class="uk-width-auto">
+                                                                            <img class="uk-border-circle"  id="img_crit" width="40" height="40" >
+                                                                        </div>
+                                                                        <div class="uk-width-expand">
+                                                                            <h3 class="uk-card-title uk-margin-remove-bottom" id="titolo_crit"></h3>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="uk-card-body">
+                                                                        <p id="feed_modal_txt_crit"> </p>
+                                                                           </div>
+                                                                <div class="uk-card-footer">
+                                                                        <div id="feed_modal_star_crit"></div>
+                                                                </div>
+                                                            </div> </div>
+                                                
+                                                <div class="uk-modal-footer uk-text-right">
+                                                    <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
+                                                    <button id="trigger-modal" href="#modal-group-feed-2" class="uk-button uk-button-primary" uk-toggle>Avanti</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="modal-group-feed-2" class="uk-flex-top" uk-modal>
+                                                <div class="uk-modal-dialog">
+                                                    
+                                                    
+                                                    <div class="uk-modal-header">
+                                                        <div class="uk-flex uk-flex-left">
+            
+                                                            <h2 class="uk-modal-title">Recensione più positiva</h2>
+                                                            <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                                        </div>
+            
+                                                    </div>
+                                                    <div class="uk-modal-body">
+                                                            <div class="uk-card uk-card-default uk-width-1-*" id="collection-item">
+                                                                    <div class="uk-card-header">
+                                                                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                                                            <div class="uk-width-auto">
+                                                                                <img class="uk-border-circle" id="img_pos" width="40" height="40" >
+                                                                            </div>
+                                                                            <div class="uk-width-expand">
+                                                                                <h3 class="uk-card-title uk-margin-remove-bottom" id="titolo_pos"></h3>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="uk-card-body">
+                                                                            <p id="feed_modal_txt_positiva"> </p>
+                                                                               </div>
+                                                                    <div class="uk-card-footer">
+                                                                            <div id="feed_modal_star_positiva"></div>
+                                                                    </div>
+                                                                </div> </div>
+                                                    
+                                                    <div class="uk-modal-footer uk-text-right">
+                                                        <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
+                                                        <button id="trigger-modal" href="#modal-group-feed-1" class="uk-button uk-button-primary" uk-toggle>Indietro</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                <div id="modal-group-9" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-margin-auto-vertical">
+                                        <!-- <button class="uk-modal-close-default" type="button" uk-close></button> -->
+                                        <div class="uk-modal-header">
+                                            <div class="uk-flex uk-flex-left">
+
+                                                <h2 class="uk-modal-title">Sentiero 516: Forca d'Aviatico</h2>
+                                                <a id="chiudi_modal" class="uk-modal-close-default" uk-close></a>
+                                            </div>
+
+                                        </div>
+                                        <div class="uk-modal-body " uk-overflow-auto>
+                                            <p>Il sentiero parte da Vertova percorrendo il primo tratto del sentiero 527. Poco oltre la spettacolare cascata della Val de Gru si guada il torrente Vertova: da lì in poi il sentiero sale velocemente fra le rocce, facendosi meno ripido in prossimità della stalla del Corno. In breve si giunge poi al guado del torrente Gru e ci si innesta sulla carrareccia che porta alla chiesetta di S. Salvatore. All'incrocio con il sentiero 524 si segue la strada a sinistra che, poco dopo, diventa sentiero fino alla Forca d'Aviatico. 
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="uk-modal-footer uk-text-right ">
+
+                                            <div class="uk-flex uk-flex-right">
+
+                                                <button id="trigger-modal" href="#modal-group-8" class="uk-button uk-button-primary" uk-toggle>Indietro</button>
+                                                <button id="trigger-modal" href="#modal-group-10" class="uk-button-small uk-button-primary" type="button" uk-toggle>Avanti</button>
+                                                <button  class="uk-button uk-button-small "  style="margin-top: 3px"  type="button"><i class="fas fa-angle-down"></i></button>
+                                                <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 1000">
+                                                        <ul class="uk-nav uk-dropdown-nav">
+                                                            
+                                                                <li class="uk-nav-header">Sentieri</li>
+                                                                <li class="uk-active"><a href="#">516</a></li>
+                                                                <li><a uk-toggle="target: #modal-group-8">525A</a></li>
+                                                                <li><a uk-toggle="target: #modal-group-7">529A</a></li>
+                                                                <li><a uk-toggle="target: #modal-group-10">527</a></li>
+                                                                <li class="uk-nav-divider"></li>
+                                                                <li><a data-izimodal-open="#modal-youtube" class="uk-modal-close" style="background-color: rgb(255,255,255,0);text-decoration: none">Video Valle</a></li>
+                                                        </ul>
+                                                    </div>
+
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div id="modal-media-video" class="uk-flex-top" uk-modal>
+                                    <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
+                                        <button class="uk-modal-close-outside" type="button" uk-close></button>
+                                        <video controls playsinline uk-video>
+                                            <source src="https://quirksmode.org/html5/videos/big_buck_bunny.mp4" type="video/mp4">
+                                            <source src="https://quirksmode.org/html5/videos/big_buck_bunny.ogv" type="video/ogg">
+                                        </video>
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="box">
+                        <div class="image fit">
+                            <img src="images/navetta.jpg" alt="" />
+                        </div>
+                        <div id="sn"></div>
+                        <div class="content">
+                            <header class="align-center">
+                                <p>Val Vertova</p>
+                                <h2>Servizio Navetta</h2>
+                            </header>
+                            <p id="modal-text">C'è la disponibilita di evitare i 2,7km di strada per pasare dal centro di Vertova alla valle grazie a un servizio reso disponibile dal comune di Vertova che offre un passaggio a pagamento per raggiungere il luogo in questione.</p>
+                            <footer class="align-center">
+                                <!--<a href="#" class="button alt">Scopri di più</a>-->
+                                <a class="uk-button uk-button-default"  >Scopri di più</a>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="inner">
+            <div>
+
+                <div>
+                    <div class="box">
+
+                        <div class="content">
+                            <header class="align-center">
+                                <p>Valle Vertova</p>
+                                <input style="display: none" type="text" id="rateCC" oninput=sas()></input>
+
+                                <h2>Feedbacks </h2>
+                            </header>
+
+                            <div id="app"></div>
+                            
+
+
+
+                                
+                                    <div class="columns">
+                                        
+                                            <div class="column">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-6 text-center">
+                                                        <h1 class="rating-num" id="avgRate">
+                                                            calcolo... </h1>
+
+                                                        <div class="rating" style="display: none">
+                                                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                                                                            </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                                                                            </span><span class="glyphicon glyphicon-star-empty"></span>
+                                                        </div>
+                                                        <div id="feed_tot">
+                                                            <!-- <span class="glyphicon glyphicon-user"></span>-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-6">
+                                                        <div class="row rating-desc">
+                                                            <div class="col-xs-3 col-md-3 text-right">
+                                                                <span class="glyphicon glyphicon-star"></span>5
+                                                            </div>
+                                                            <div class="col-xs-8 col-md-9">
+                                                                <div class="progress progress-striped">
+                                                                    <div id="Rate_five" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end 5 -->
+                                                            <div class="col-xs-3 col-md-3 text-right">
+                                                                <span class="glyphicon glyphicon-star"></span>4
+                                                            </div>
+                                                            <div class="col-xs-8 col-md-9">
+                                                                <div class="progress">
+                                                                    <div id="Rate_four" class="progress-bar bg-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end 4 -->
+                                                            <div class="col-xs-3 col-md-3 text-right">
+                                                                <span class="glyphicon glyphicon-star"></span>3
+                                                            </div>
+                                                            <div class="col-xs-8 col-md-9">
+                                                                <div class="progress">
+                                                                    <div id="Rate_three" class="progress-bar bg-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end 3 -->
+                                                            <div class="col-xs-3 col-md-3 text-right">
+                                                                <span class="glyphicon glyphicon-star"></span>2
+                                                            </div>
+                                                            <div class="col-xs-8 col-md-9">
+                                                                <div class="progress">
+                                                                    <div id="Rate_two" class="progress-bar bg-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end 2 -->
+                                                            <div class="col-xs-3 col-md-3 text-right">
+                                                                <span class="glyphicon glyphicon-star"></span>1
+                                                            </div>
+                                                            <div class="col-xs-8 col-md-9">
+                                                                <div class="progress">
+                                                                    <div id="Rate_one" class="progress-bar bg-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end 1 -->
+                                                        </div>
+                                                        <!-- end row -->
+                                                    </div>
+                                                </div>
+                                            
+                                            </div>
+                                        
+
+                                            <div class="column">
+                                            <div class="uk-card uk-card-default uk-card-small  uk-margin-left">
+
+                                                <div class="uk-card-header">
+                                                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                                        <div class="uk-width-auto">
+                                                            <img class="uk-border-circle" width="40" height="40" id="imgAuth" src="">
+                                                        </div>
+                                                        <div class="uk-width-expand">
+                                                            <h3 class="uk-card-title">Valuta questo servizio</h3>
+                                                            <p class="uk-text-meta uk-margin-remove-top"><time id="user_name" "></time></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="uk-card-body">
+
+                                                    <textarea class="form-control" id="textarea_" rows="3" placeholder="Descrivi la tua esperienza (facoltativo)"></textarea>
+                                                </div>
+                                                <div class="uk-card-footer" id="footer_rate">
+                                                    <div class="ui huge star rating" data-rating="0" data-max-rating="5"   id="rateStar"></div>
+                                                    <div class="uk-inline">
+                                                        <button class="uk-button uk-button-default" type="button" id="errHandler" style="display: none">Click</button>
+                                                        <div uk-drop="pos: top; animation: uk-animation-slide-top-small; duration: 1000">
+                                                            <div class="uk-alert-danger" uk-alert>
+
+                                                                <p>valuta almeno l'esperienza</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a class="uk-button uk-button-text " id="submitSurvey" style="float: right;" >Pubblica</a>
+                                                    <a class="uk-button uk-button-text " id="remSurvey" style="float: right; display: none" >Elimina</a>
+                                                </div>
+
+                                            </div>
+                                        
+                                        </div>
+                                
+
+                                    </div>
+
+
+
+
+                            
+
+                            
+                            
+                        </div>
+                        <!-- <div class="uk-card uk-card-default uk-width-1-2@m" id="collection-itemm" data-color="black">
+                                <div class="uk-card-header">
+                                    <div class="uk-grid uk-flex-middle" uk-grid>
+                                        <div class="uk-width-auto">
+                                            <img class="uk-border-circle" width="40" height="40" src="https://lh6.googleusercontent.com/-DV7-WOS-r3I/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3reGasF1JICVQIG2qW9V1ad-XjI6mQ/mo/photo.jpg">
+                                        </div>
+                                        <div class="uk-width-expand">
+                                            <div class="uk-card-badge uk-label">recesione più critica</div>
+                                            <h3 class="uk-card-title">Title</h3>
+                                            <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-card-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                </div>
+                                <div class="uk-card-footer">
+                                    <a href="#" class="uk-button uk-button-text">Read more</a>
+                                </div>
+                            </div>-->
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- <footer class="align-center">
+                                <a href="#" class="button alt">Scopri di più</a>
+                            </footer>-->
+        </div>
+        </div>
+        </div>
+
+
+
+        </div>
+        </div>
+    </section>
+
+    <!-- Two -->
+    <section id="two" class="wrapper style3">
+        <div class="inner">
+            <header class="align-center">
+                <p>Percorso naturalistico di Vertova</p>
+                <h2>VALLE VERTOVA</h2>
+            </header>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <ul class="icons">
+                
+                <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                <a id='viewFeeds_modal' style="display: none" class='uk-button uk-button-default' href='#modal-group-feed-1' uk-toggle> Visualizza le recensioni</a>
+ 
+            </ul>
+        </div>
+        
+       <!-- <div class="copyright">
+            Seguici sui nostri social
+        </div>-->
+    </footer>
+    <script>
+      /*  function clicky() {
+
+            var clicky = document.getElementById("errHandler").click();
+        }
+
+        function sas() {
+            console.log(" ;=)");
+        }*/
+    </script>
+    <script>
+        //jquery
+
+        $('.ui.rating')
+            .rating({
+                initialRating: 0,
+                maxRating: 5,
+                clearable: true,
+                onRate: function(rating) {
+                    console.log(rating);
+                    window.value = rating;
+
+                }
+            });
+
+
+
+            
+    </script>
+      <!-- izi-Toast -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" type="text/javascript"></script>
+  <!-- Scripts -->
+    <script src="assets/js/firebase.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+    <script src='http://izimodal.marcelodolce.com/js/iziModal.min.js?v=2'></script>
+      <script src="assets/js/index.js"></script>
+      <script src="assets/js/izi-modal-login.js"></script>
+</body>
+
+</html>
